@@ -78,7 +78,7 @@ function makeChart() {
 		pathToImages : "../amstockchart/amcharts/images/",
 
 		dataSets : [{
-			title : "Environment Temperature",
+			title : "Current measure",
 			fieldMappings : [{
 				fromField : "value",
 				toField : "value"
@@ -89,7 +89,7 @@ function makeChart() {
 			dataProvider : chartData1,
 			categoryField : "date"
 		}, {
-			title : "Body Temperature",
+			title : "Earth measure",
 			fieldMappings : [{
 				fromField : "value",
 				toField : "value"
@@ -100,7 +100,7 @@ function makeChart() {
 			dataProvider : chartData2,
 			categoryField : "date"
 		}, {
-			title : "saliva pH",
+			title : "First Space measure",
 			fieldMappings : [{
 				fromField : "value",
 				toField : "value"
@@ -109,50 +109,6 @@ function makeChart() {
 				toField : "volume"
 			}],
 			dataProvider : chartData3,
-			categoryField : "date"
-		}, {
-			title : "Glucose in the blood",
-			fieldMappings : [{
-				fromField : "value",
-				toField : "value"
-			}, {
-				fromField : "volume",
-				toField : "volume"
-			}],
-			dataProvider : chartData4,
-			categoryField : "date"
-		}, {
-			title : "Electrocardiogram",
-			fieldMappings : [{
-				fromField : "value",
-				toField : "value"
-			}, {
-				fromField : "volume",
-				toField : "volume"
-			}],
-			dataProvider : chartData4,
-			categoryField : "date"
-		}, {
-			title : "Muscular group",
-			fieldMappings : [{
-				fromField : "value",
-				toField : "value"
-			}, {
-				fromField : "volume",
-				toField : "volume"
-			}],
-			dataProvider : chartData4,
-			categoryField : "date"
-		}, {
-			title : "Water consuption",
-			fieldMappings : [{
-				fromField : "value",
-				toField : "value"
-			}, {
-				fromField : "volume",
-				toField : "volume"
-			}],
-			dataProvider : chartData4,
 			categoryField : "date"
 		}],
 
