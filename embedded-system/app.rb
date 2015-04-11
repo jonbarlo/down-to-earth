@@ -188,7 +188,7 @@ end
 
 get '/view/medical-analysis' do
 	puts "========================================"
-	erb :body_scan
+	erb :medical_analisys
 end
 
 get '/view/muscle-performance' do
