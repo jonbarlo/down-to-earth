@@ -1,2 +1,25 @@
 # down-to-earth
-Citizen science tool that ties astronaut health onboard the International Space Station and to health and exercise options on Earth. Use data from previous human spaceflight missions.
+Human body monitor, muscle performance monitor, exersices recomendations, and preventive health.
+
+#TODO
+
+##Body Scan
+	temperatura ambiente
+	temperatura cuerpo
+	nivel ph saliva
+	glucosa en sangre
+	electrocardiograma
+	medir grupo muscular
+	nivel de hidratación
+
+##Water bags scan? hydro % monitor
+
+##View Results
+	###Medical Analysis
+	###Muscle Performance
+		####Exercises Recomendations
+
+#Run embedded-system
+	bundle install
+	shotgun app.rb
+

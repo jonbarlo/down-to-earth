@@ -1,0 +1,71 @@
+<!-- ===================================== 
+	IMAGES 
+===================================== -->
+<div class="col_6 gallery">
+	<a href="http://placehold.it/600x450/4D99E0/ffffff.png&text=600x450"><img src="/images/presion.png" width="100" height="100" /></a>
+	<a href="http://placehold.it/600x450/75CC00/ffffff.png&text=600x450"><img src="/images/presion.png" width="100" height="100" /></a>
+	<a href="http://placehold.it/600x450/E49800/ffffff.png&text=600x450"><img src="http://placehold.it/100x100/E49800/ffffff.png&text=100x100" width="100" height="100" /></a>
+	<a href="http://placehold.it/600x450/E4247E/ffffff.png&text=600x450"><img src="http://placehold.it/100x100/E4247E/ffffff.png&text=100x100" width="100" height="100" /></a>
+	<a href="http://placehold.it/600x450/00C6E4/ffffff.png&text=600x450"><img src="http://placehold.it/100x100/00C6E4/ffffff.png&text=100x100" width="100" height="100" /></a>
+	<a href="http://placehold.it/600x450/E4DB0F/ffffff.png&text=600x450"><img src="http://placehold.it/100x100/E4DB0F/ffffff.png&text=100x100" width="100" height="100" /></a>
+	<a href="http://placehold.it/600x450/7400E4/ffffff.png&text=600x450"><img src="http://placehold.it/100x100/7400E4/ffffff.png&text=100x100" width="100" height="100" /></a>
+	<a href="http://placehold.it/600x450/C50000/ffffff.png&text=600x450"><img src="http://placehold.it/100x100/C50000/ffffff.png&text=100x100" width="100" height="100" /></a>
+</div>
+
+    <!-- Gallery -->
+<div class="col_6 gallery">
+	<article class="box weather float_left">
+
+	  <div class="icon bubble black">
+	    <div class="spin">
+	      <img src="/images/glucometro.png">
+	    </div>
+	  </div>
+	  
+	  <h1>Glucosa</h1>
+	  <input class="myButton" ng-click="button_leer_glucometro()" type="button" value="Analizar Glucosa En Sangre">
+	  <h2>{{glucometer_read_value}} mg/dl</h2>
+
+	  <div class="icon bubble black">
+	    <div class="spin">
+	      <img src="/images/presion.png">
+	    </div>
+	  </div>
+	  
+	  <h1>Presión Arterial</h1>
+	  <input class="myButton" ng-click="button_leer_glucometro()" type="button" value="Analizar Presión Arterial">
+	  <h2>{{blood_pressure_read_value}} p</h2>
+	  <h2>{{systolic_pressure_read_value}} SYS</h2>
+	  <h2>{{diastolic_pressure_read_value}} DIA</h2>
+
+	</article>
+</div>
+
+
+	<article class="box weather float_left">
+
+	  <div class="icon bubble black">
+	    <div class="spin">
+	      <img src="/images/oximetro.png">
+	    </div>
+	  </div>
+	  
+	  <h1>Oximetría de Pulso</h1>
+	  <input class="myButton" ng-click="button_leer_oximetro()" type="button" value="Medición de Oxígeno Arterial">
+	  <h2>{{oximeter_read_value_spo2}} SpO2%</h2>
+	  <h2>{{oximeter_read_value_prbpm}} PRbpm</h2>
+	</article>
+
+
+	<article class="box weather float_left">
+
+	  <div class="icon bubble black">
+	    <div class="spin">
+	      <img src="/images/temperatura.png">
+	    </div>
+	  </div>
+	  
+	  <h1>Temperatura</h1>
+	  <input class="myButton" ng-click="button_leer_temperatura()" type="button" value="Medición de Temperatura Corporal">
+	  <h2>{{temperature_read_value}} &#8451;</h2>
+	</article>
