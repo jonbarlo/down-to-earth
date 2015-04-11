@@ -19,6 +19,10 @@ Human body monitor, muscle performance monitor, exersices recomendations, and pr
 	###Muscle Performance
 		####Exercises Recomendations
 
+#Pre-requisites for embedded-system
+	sudo gem install rdoc
+	sudo gem install bundle
+	
 #Run embedded-system
 	bundle install
 	shotgun app.rb
