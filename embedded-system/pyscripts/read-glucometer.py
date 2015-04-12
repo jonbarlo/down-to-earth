@@ -2,7 +2,7 @@ import time
 import RPi.GPIO as GPIO
 import sys, json
 
-#TODO: define if keep/delete params
+#GPIO17
 RCpin=17
 
 #Tests whether wter is present.
