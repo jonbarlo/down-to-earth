@@ -25,26 +25,34 @@ function drawChart(type){
     loadJSON("/getdatagraphic/2/"+type,function(data){
     //$.getJSON( "/getdatagraphic", function( data ) {
     	console.log(data);
-    	if(type !== 'electrocardiogram' && type !== 'muscular_group'){
+    	if(type == 'electrocardiogram' || type == 'electromyograph'){
     		var jsonObj = JSON.parse(data);
     		console.log(jsonObj);
+    		var arraysize= jsonObj.length;
+    		var earthDataArray = jsonObj[0].value.split(",");
+			var spaceDataArray = jsonObj[1].value.split(",");
+			var lastDataArray = jsonObj[arraysize-1].value.split(",");
+
     		//value":"1,1.5,2,2.5,3,3.5,4,4.5"
-    		for(var item in jsonObj){
-    			console.log(jsonObj[item]);	
+    		for(var item in earthDataArray){
    		 		currentData.push({
-					date : jsonObj[item].created_at,
-					value : jsonObj[item].value
+					date : item,
+					value : earthDataArray[item]
 				});
+			}
+			for(var item in spaceDataArray){
 				earthData.push({
-					date : jsonObj[item].created_at,
-					value : 0
+					date : item,
+					value : spaceDataArray[item]
 				});
+			}
+			for(var item in lastDataArray){
 				spaceData.push({
-					date : jsonObj[item].created_at,
-					value : 0
+					date : item,
+					value : lastDataArray[item]
 				});
     		}
-    		makeChart();
+    		makeElectroChart();
     	} else {
     		var jsonObj = JSON.parse(data);
     		console.log(jsonObj);
@@ -262,30 +270,7 @@ function makeElectroChart() {
 			valueBalloonsEnabled : true
 		},
 
-		periodSelector : {
-			position : "left",
-			periods : [{
-				period : "hh",
-				count : 24,
-				label : "24 hours"
-			},{
-				period : "DD",
-				count : 7,
-				label : "7 days"
-			}, {
-				period : "MM",
-				selected : true,
-				count : 1,
-				label : "1 month"
-			}, {
-				period : "YYYY",
-				count : 1,
-				label : "1 year"
-			}, {
-				period : "MAX",
-				label : "MAX"
-			}]
-		},
+		
 
 		dataSetSelector : {
 			position : "left"
