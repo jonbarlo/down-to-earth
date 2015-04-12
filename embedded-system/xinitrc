@@ -38,9 +38,9 @@ fbset -depth $( cat /sys/module/*fb*/parameters/fbdepth );
 #matchbox-window-manager -use_titlebar no -use_cursor no &
 matchbox-window-manager -use_titlebar no &
 
-echo 'Starting Web Server ... Ruby/Sinatra w/ Hospi+App' &
+echo 'Starting Web Server ... Ruby/Sinatra w/ DownToEarth' &
 #/bin/bash --login
-shotgun /home/pi/Desktop/GIT/HospiApp/app.rb &
+shotgun /home/pi/Desktop/GIT/downtoearth-embedded-system/app.rb &
 echo 'Starting the browser --app=http://localhost:9393' &
 # Start the browser (See http://peter.sh/experiments/chromium-command-line-switches/)
 chromium --app=http://localhost:9393 --start-maximized &
