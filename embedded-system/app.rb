@@ -342,12 +342,13 @@ get '/view/body-scan' do
 	erb :body_scan
 end
 
-get '/getdatagraphic' do
-  @chartData=open("https://downtoearth-backend.herokuapp.com/bodyscan/all/json").read
+get '/getdatagraphic/:user_id/:sensor' do
+  @chartData=open("https://downtoearth-backend.herokuapp.com/bodyscan/#{params[:user_id]}/#{params[:sensor]}/json").read
   puts @chartData
   content_type 'application/json'
   @chartData.to_json
 end
+
 get '/view/medical-analysis' do
 	puts "========================================"
 	erb :medical_analisys
