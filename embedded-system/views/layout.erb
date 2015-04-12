@@ -16,17 +16,17 @@
   <body ng-app="myapp" ng-controller="Ctrl"
   class="callout callout-top clearfix" style="background-image:url('/images/background.png')">
     <!-- ===================================== END HEADER ===================================== -->
-    <nav class="navbar">
-      <ul>
-        <li><span class="top-title">Down</span> <span class="red-cross"><big>to</big></span> <span class="top-title">Earth</span></li>
+    <nav class="navbar" style="vertical-align: center">
+      <ul style="margin-top: 10px">
+        <li><span class="top-title">Down to Earth</span></li>
         <li><input type="text" placeholder="Your User Id Goes Here" ng-model="user_id_value"></li>
         <li><input class="myButton" ng-click="button_send_body_scan(user_id_value)" type="button" value="Send Body Scan Report"></li>
         <li><span style="color:green;">{{files_been_sent_messages}}</span></li>
       </ul>
-      <div class="col_6 gallery">
-        <a href="/view/body-scan"><img src="/images/body-scan.png" width="100" height="100" /></a>
-        <a href="/view/medical-analysis"><img src="/images/medical-analysis.png" width="100" height="100" /></a>
-        <a href="/view/muscle-performance"><img src="/images/muscle-performance.png" width="100" height="100" /></a>
+      <div class="col_6 gallery" >
+        <a href="/view/body-scan"><img src="/images/body-scan.png" width="25" height="25" /></a>
+        <a href="/view/medical-analysis"><img src="/images/medical-analysis.png" width="25" height="25" /></a>
+        <a href="/view/muscle-performance"><img src="/images/muscle-performance.png" width="25" height="25" /></a>
       </div>
     </nav>
       <div class="grid">
