@@ -263,4 +263,88 @@
                     $scope.files_been_sent_messages = "";
               };
 
+              function get_EGM_register_from_database(muscular_region) {
+                      console.log("button_body_head")
+                      var image_path = "/images/body-muscles/"+muscular_region+".png";
+                      document.getElementById("my_muscle_performance_report_body_img").src=image_path;
+                      //
+/*                      var url = "/view/muscle-performance/1/"+muscular_region
+                    $http.get(url).
+                      success(function(data, status, headers, config) {
+                        console.log(data);
+                      }).
+                      error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        alert("Error: "+data)
+                      });
+*/                    $scope.EGM_body_earth = Math.floor((Math.random()*450)+1);
+                      $scope.EGM_body_space = Math.floor((Math.random()*350)+1);
+                      $scope.EGM_body_today = Math.floor((Math.random()*300)+1);
+                      return false;
+              };
+
+              $scope.button_body_head = function() {
+                      console.log("button_body_head")
+                      //var image_path = "/images/body-muscles/head.png";
+                      //document.getElementById("my_muscle_performance_report_body_img").src=image_path;
+                      get_EGM_register_from_database("head");
+                      return false;
+              };
+
+              $scope.button_body_neck = function() {
+                      console.log("button_body_neck")
+                      //var image_path = "/images/body-muscles/neck.png";
+                      //document.getElementById("my_muscle_performance_report_body_img").src=image_path;
+                      get_EGM_register_from_database("neck");
+                      return false;
+              };
+
+              $scope.button_body_shoulders = function() {
+                      console.log("button_body_shoulders")
+                      //var image_path = "/images/body-muscles/shoulder.png";
+                      //document.getElementById("my_muscle_performance_report_body_img").src=image_path;
+                      get_EGM_register_from_database("shoulder");
+                      return false;
+              };
+
+              $scope.button_body_pushups = function() {
+                      console.log("button_body_pushups")
+                      //var image_path = "/images/body-muscles/pushups.png";
+                      //document.getElementById("my_muscle_performance_report_body_img").src=image_path;
+                      get_EGM_register_from_database("pushups");
+                      return false;
+              };
+
+              $scope.button_body_arms = function() {
+                      console.log("button_body_arms")
+                      //var image_path = "/images/body-muscles/arms.png";
+                      //document.getElementById("my_muscle_performance_report_body_img").src=image_path;
+                      get_EGM_register_from_database("arms");
+                      return false;
+              };
+
+              $scope.button_body_hands = function() {
+                      console.log("button_body_hands")
+                      //var image_path = "/images/body-muscles/hands.png";
+                      //document.getElementById("my_muscle_performance_report_body_img").src=image_path;
+                      get_EGM_register_from_database("hands");
+                      return false;
+              };
+
+              $scope.button_body_legs = function() {
+                      console.log("button_body_legs")
+                      //var image_path = "/images/body-muscles/legs.png";
+                      //document.getElementById("my_muscle_performance_report_body_img").src=image_path;
+                      get_EGM_register_from_database("legs");
+                      return false;
+              };
+
+              $scope.button_body_feet = function() {
+                      console.log("button_body_feet")
+                      //var image_path = "/images/body-muscles/feet.png";
+                      //document.getElementById("my_muscle_performance_report_body_img").src=image_path;
+                      get_EGM_register_from_database("feet");
+                      return false;
+              };
         });

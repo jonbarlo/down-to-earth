@@ -358,6 +358,14 @@ get '/view/muscle-performance' do
 	puts "========================================"
 	erb :muscle_performance
 end
+
+get '/view/muscle-performance/:user_id/:body_section' do
+  @chartData=open("https://downtoearth-backend.herokuapp.com/bodyscan/#{params[:user_id]}/electromyograph/json").read
+  puts @chartData
+  content_type 'application/json'
+  @chartData.to_json
+  puts "view muscle region performance data"
+end
 ##
 ## END
 ##
