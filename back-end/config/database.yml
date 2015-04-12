@@ -1,0 +1,17 @@
+development:
+adapter: postgresql
+database: downtoearth
+username: <%= ENV['PG_USER'] %>
+password: <%= ENV['PG_PASS'] %>
+host: localhost
+
+
+production:
+adapter: postgresql
+database: df24ip9j9iafc
+username: iwpasgdyhkutds
+password: 9DVCAQOb4jvWFVlEO2oZYqHVqI
+host: ec2-50-19-236-178.compute-1.amazonaws.com
+port: 5432
+pool: 5
+timeout: 5000

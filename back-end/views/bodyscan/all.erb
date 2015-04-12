@@ -1,0 +1,14 @@
+<h3>All Body Scans</h3>
+<ul>
+<% @models.each do |model| %>
+	<li>
+		<%= model.id %>
+		<%= model.user_id %>
+		<%= model.sensor %>
+		<%= model.value %>
+		<%= model.UOM %>
+		<%= model.created_at %>
+	</li>
+<% end %>
+</ul>
+<a href="/">Back to Home</a>

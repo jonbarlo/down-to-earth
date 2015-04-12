@@ -1,0 +1,13 @@
+<h3>All Users</h3>
+<ul>
+<% @models.each do |model| %>
+	<li>
+		<%= model.id %>
+		<%= model.firstname %>
+		<%= model.lastname %>
+		<%= model.nation %>
+		<%= model.birthday %>
+	</li>
+<% end %>
+</ul>
+<a href="/">Back to Home</a>
