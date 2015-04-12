@@ -2,8 +2,8 @@ import time
 import RPi.GPIO as GPIO
 import sys, json
 
-#GPIO22
-RCpin=22
+#GPIO23
+RCpin=23
 
 def ReadGPIOPin(pinNo):
     GPIO.setmode(GPIO.BCM)
@@ -18,4 +18,4 @@ def ReadGPIOPin(pinNo):
 # RETURN/PRINT READ VALUES
 #
 # return processing result
-print json.dumps({'read-electromyograph_read_value':ReadGPIOPin(RCpin)})
+print json.dumps({'read-electrocardiograph_read_value':ReadGPIOPin(RCpin)})
