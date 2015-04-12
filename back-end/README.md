@@ -12,9 +12,12 @@ Then just go to project folder and run the migration files to create localhost d
 
 ##Localhost test
 ###POST new body-scan
+####localhost
 	curl --data "user_id=1&sensor=glucometer&value=66&UOM=mgdl&created_at=04/11/2015" http://127.0.0.1:9393/bodyscan/create/raw
+####live
+	curl --data "user_id=1&sensor=glucometer&value=1&UOM=mgdl&created_at=04/11/2015" https://downtoearth-backend.herokuapp.com/bodyscan/create/raw
 
-##Heroku (connect to)
+##Heroku (connect to backend for pushing)
 
 ###Repo init
 	git init #first time only
