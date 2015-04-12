@@ -61,6 +61,88 @@ def temperature_load_to_session()
 	session["temperature_read_value"] = parsed["temperature_read_value"]
 end
 
+def temperature_env_load_to_session()
+	if settings.production_enviroment then
+		result = IO.popen("sudo python /home/pi/Desktop/GIT/HospiApp/pyscripts/read-dht22.py")
+	else
+		result = IO.popen("python pyscripts/mock-temperature.py")
+	end
+	server_response = result.gets
+	print "python call success, response ---> #{server_response}"
+	#session["value"] = server_response
+	parsed = JSON.parse(server_response)
+	session["temperature_env_read_value"] = parsed["temperature_read_value"]
+end
+
+def saliva_ph_load_to_session()
+	if settings.production_enviroment then
+		result = IO.popen("sudo python /home/pi/Desktop/GIT/HospiApp/pyscripts/read-glucometer.py")
+	else
+		result = IO.popen("python pyscripts/mock-glucometer.py")
+	end
+	server_response = result.gets
+	print "python call success, response ---> #{server_response}"
+	#session["value"] = server_response
+	parsed = JSON.parse(server_response)
+	if parsed["glucometer_read_value"] == 1 then
+		parsed["glucometer_read_value"] = "Ingrese muestra"
+	else
+		parsed["glucometer_read_value"] = Random.rand(2...159)
+	end
+	session["saliva_ph_read_value"] = parsed["glucometer_read_value"]
+end
+
+def electrocardiograph_load_to_session()
+	if settings.production_enviroment then
+		result = IO.popen("sudo python /home/pi/Desktop/GIT/HospiApp/pyscripts/read-electrocardiograph.py")
+	else
+		result = IO.popen("python pyscripts/mock-electrocardiograph.py")
+	end
+	server_response = result.gets
+	print "python call success, response ---> #{server_response}"
+	#session["value"] = server_response
+	parsed = JSON.parse(server_response)
+	if parsed["electrocardiograph_read_value"] == 1 then
+		parsed["electrocardiograph_read_value"] = "Invalid Read"
+	else
+		parsed["electrocardiograph_read_value"] = [Random.rand(2...159), Random.rand(2...159), Random.rand(2...159)]
+	end
+	session["electrocardiograph_read_value"] = parsed["electrocardiograph_read_value"]
+end
+
+def electromyograph_load_to_session()
+	if settings.production_enviroment then
+		result = IO.popen("sudo python /home/pi/Desktop/GIT/HospiApp/pyscripts/read-electromyoiograph.py")
+	else
+		result = IO.popen("python pyscripts/mock-electromyograph.py")
+	end
+	server_response = result.gets
+	print "python call success, response ---> #{server_response}"
+	#session["value"] = server_response
+	parsed = JSON.parse(server_response)
+	if parsed["electromyograph_read_value"] == 1 then
+		parsed["electromyoiograph_read_value"] = "Invalid Read"
+	else
+		parsed["electromyograph_read_value"] = [Random.rand(2...159), Random.rand(2...159), Random.rand(2...159)]
+	end
+	session["electromyograph_read_value"] = parsed["electromyograph_read_value"]
+end
+
+def blood_pressure_load_to_session()
+	#if settings.production_enviroment then
+	#	result = IO.popen("sudo python /home/pi/Desktop/GIT/HospiApp/pyscripts/read-blood-pressure.py")
+	#else
+	#	result = IO.popen("python pyscripts/mock-blood-pressure.py")
+	#end
+	result = IO.popen("python pyscripts/mock-blood-pressure.py")
+	server_response = result.gets
+	print "python call success, response ---> #{server_response}"
+	#session["value"] = server_response
+	parsed = JSON.parse(server_response)
+	session["blood_pressure_read_value"] = parsed["blood_pressure_read_value"]
+	session["blood_pressure_read_value_sys"] = parsed["blood_pressure_read_value_sys"]
+	session["blood_pressure_read_value_dia"] = parsed["blood_pressure_read_value_dia"]
+end
 ##
 ## END PYTHON LOADERS TO RUBY SESSION
 ##
@@ -100,6 +182,56 @@ get '/temperature.json' do
   	{ :temperature_read_value => session["temperature_read_value"] }.to_json
 end
 
+get '/temperature-env.json' do
+  content_type :json
+
+  	puts "========================================"
+	puts "python temperature script call && json parse"
+	temperature_env_load_to_session()
+	puts "========================================"
+  	{ :temperature_env_read_value => session["temperature_env_read_value"] }.to_json
+end
+
+get '/saliva-ph.json' do
+  content_type :json
+
+  	puts "========================================"
+	puts "python saliva_ph script call && json parse"
+	saliva_ph_load_to_session()
+	puts "========================================"
+  	{ :saliva_ph_read_value => session["saliva_ph_read_value"] }.to_json
+end
+
+get '/electrocardiograph.json' do
+  content_type :json
+
+  	puts "========================================"
+	puts "python electrocardiograph script call && json parse"
+	electrocardiograph_load_to_session()
+	puts "========================================"
+  	{ :electrocardiograph_read_value => session["electrocardiograph_read_value"] }.to_json
+end
+
+get '/electromyograph.json' do
+  content_type :json
+
+  	puts "========================================"
+	puts "python electromyograph script call && json parse"
+	electromyograph_load_to_session()
+	puts "========================================"
+  	{ :electromyograph_read_value => session["electromyograph_read_value"] }.to_json
+end
+
+get '/blood-pressure.json' do
+  content_type :json
+  	puts "========================================"
+	puts "python blood-pressure script call && json parse"
+	blood_pressure_load_to_session()
+	puts "========================================"
+  	{ :blood_pressure_read_value => session["blood_pressure_read_value"],
+  		:blood_pressure_read_value_sys => session["blood_pressure_read_value_sys"],
+  		:blood_pressure_read_value_dia => session["blood_pressure_read_value_dia"] }.to_json
+end
 ##
 ## END JSON WEB API
 ##
@@ -107,8 +239,32 @@ end
 ##
 ## BEGIN SAVE ACTIONS
 ##
+get '/bodyscan-server-prepare/:user_id/:sensor/:value/:UOM/:created_at' do
+	puts "creating raw object via web api call"
+	puts "---------------------------------"
+	puts "user_id: #{params[:user_id]} sensor: #{params[:sensor]} value: #{params[:value]} UOM: #{params[:UOM]} created_at: #{params[:created_at]}"
+	puts "---------------------------------"
+	@user_id = params[:user_id]
+	@sensor = params[:sensor]
+	@value = params[:value]
+	@UOM = params[:UOM]
+	@created_at = params[:created_at]
+	puts "---------------------------------"
+	puts @created_at
+	puts "---------------------------------"
+	puts "sending body scan to https://downtoearth-backend.herokuapp.com/bodyscan/create/raw"
+#curl --data "user_id=1&sensor=glucometer&value=1&UOM=mgdl&created_at=04/11/2015"
+#
+	#response = open("http://hospitapp.aeonitgroup.com/Service1.svc/registrar-lectura-pacienteG/#{params[:numero_cedula]}/temperatura/#{params[:temperature_read_value]}/C").read
+	#puts response
+	uri = URI('https://downtoearth-backend.herokuapp.com/bodyscan/create/raw')
+	res = Net::HTTP.post_form(uri, 'user_id' => @user_id, 'sensor' => @sensor,
+		'value' => @value, 'UOM' => @UOM, 'created_at' => @created_at)
+	puts res.body
+	puts "END!!!!"
+end
 
-get '/enviar-reporte/:numero_cedula/:glucometro_value/:oximeter_read_value_spo2/:oximeter_read_value_prbpm/:temperature_read_value' do
+get '/prepare-full-body-scan/:user_id/:glucometro_value/:oximeter_read_value_spo2/:oximeter_read_value_prbpm/:temperature_read_value' do
 	puts "========================================"
 	if params[:glucometro_value].to_i != 0 then
 		puts "saving glucometer...#{params[:glucometro_value]}"

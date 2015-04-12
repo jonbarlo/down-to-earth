@@ -20,4 +20,4 @@ def ReadGPIOPin(pinNo):
 # RETURN/PRINT READ VALUES
 #
 # return processing result
-print json.dumps({'read-electromyograph_read_value':ReadGPIOPin(RCpin)})
+print json.dumps({'read_electromyograph_read_value':ReadGPIOPin(RCpin)})

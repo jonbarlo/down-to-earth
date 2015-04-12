@@ -17,11 +17,12 @@
   class="callout callout-top clearfix" style="background-image:url('/images/background.png')">
     <!-- ===================================== END HEADER ===================================== -->
     <nav class="navbar">
-      <!--<ul>
+      <ul>
         <li><span class="top-title">Down</span> <span class="red-cross"><big>to</big></span> <span class="top-title">Earth</span></li>
-        <li><input type="text" placeholder="666 666" ng-model="cedula_value"></li>
-        <li><input class="myButton" ng-click="button_enviar_informe(cedula_value)" type="button" value="Enviar Informe"></li>
-      </ul>-->
+        <li><input type="text" placeholder="Your User Id Goes Here" ng-model="user_id_value"></li>
+        <li><input class="myButton" ng-click="button_send_body_scan(user_id_value)" type="button" value="Send Body Scan Report"></li>
+        <li><span style="color:green;">{{files_been_sent_messages}}</span></li>
+      </ul>
       <div class="col_6 gallery">
         <a href="/view/body-scan"><img src="/images/body-scan.png" width="100" height="100" /></a>
         <a href="/view/medical-analysis"><img src="/images/medical-analysis.png" width="100" height="100" /></a>
@@ -31,18 +32,19 @@
       <div class="grid">
         <div class="col_12" style="margin-top:100px;">
           <%= yield %>
-          <script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-		  <script type="text/javascript" src="../js/angular.min.js"></script>
-          <script type="text/javascript" src="../js/kickstart.js"></script> 
-          <script type="text/javascript" src="../js/controller.js"></script>
-	      <script type="text/javascript" src="../js/chartmanager.js"></script>
-
-          <!-- Charts data -->
-       	  <script src="../amstockchart/amcharts/amcharts.js" type="text/javascript"></script>
-		  <script src="../amstockchart/amcharts/serial.js" type="text/javascript"></script>
-		  <script src="../amstockchart/amcharts/amstock.js" type="text/javascript"></script>
-    	  <script src="../amstockchart/amcharts/themes/light.js" type="text/javascript"></script>
         </div>
       </div> <!-- End Grid -->
+
+      <!--<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>-->
+      <script type="text/javascript" src="../js/angular.min.js"></script>
+      <script type="text/javascript" src="../js/kickstart.js"></script> 
+      <script type="text/javascript" src="../js/controller.js"></script>
+      <script type="text/javascript" src="../js/chartmanager.js"></script>
+
+      <!-- Charts data -->
+      <script src="../amstockchart/amcharts/amcharts.js" type="text/javascript"></script>
+      <script src="../amstockchart/amcharts/serial.js" type="text/javascript"></script>
+      <script src="../amstockchart/amcharts/amstock.js" type="text/javascript"></script>
+      <script src="../amstockchart/amcharts/themes/light.js" type="text/javascript"></script>
   </body>
 </html>
