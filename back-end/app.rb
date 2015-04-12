@@ -87,12 +87,48 @@ end
 
 get '/bodyscan/all/json' do
   content_type :json
-  	@models = BodyScan.all
+  	@models = BodyScan.all.order('created_at')
   	puts "========================================"
 	puts "getting all bodyscan..."
 	puts @models.to_json
 	puts "========================================"
 	@models.to_json
+end
+
+get '/bodyscan/:user_id/json' do
+  content_type :json
+  	@models = BodyScan.all.order('created_at')
+  	filtered_records = Array.new
+  	@models.each do |row|
+  		puts "#{row.user_id} user_id:#{params[:user_id]}"
+  		if row.user_id.to_s == params[:user_id] then
+	  		puts "#{row.sensor} #{row.value}"
+	  		filtered_records << row
+	  	end
+	  end
+  	puts "========================================"
+	puts "getting filtered_records bodyscan..."
+	puts filtered_records.to_json
+	puts "========================================"
+	filtered_records.to_json
+end
+
+get '/bodyscan/:user_id/:sensor/json' do
+  content_type :json
+  	@models = BodyScan.all.order('created_at')
+  	filtered_records = Array.new
+  	@models.each do |row|
+  		puts "#{row.user_id} user_id:#{params[:user_id]}"
+  		if row.user_id.to_s == params[:user_id] && row.sensor == params[:sensor] then
+	  		puts "#{row.sensor} #{row.value}"
+	  		filtered_records << row
+	  	end
+	  end
+  	puts "========================================"
+	puts "getting filtered_records bodyscan..."
+	puts filtered_records.to_json
+	puts "========================================"
+	filtered_records.to_json
 end
 
 after do
