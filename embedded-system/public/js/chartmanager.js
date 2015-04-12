@@ -1,60 +1,53 @@
-var chartData1 = [];
-	var chartData2 = [];
-	var chartData3 = [];
-	var chartData4 = [];
+var currentData = [];
+var earthData = [];
+var spaceData = [];
+
 		var chart;
 // Draws the chart
-function drawChart(){
-	generateChartData();
-	// in order to set theme for a chart, all you need to include theme file
-	// located in amcharts/themes folder and set theme property for the chart.
+function drawChart(type){
+/*
+	environment_temp
+    body_temp
+    saliva_ph
+    glucose
+    water_consuption
+    o
+    electrocardiogram
+    muscular_group
+    */
 
-	makeChart();
+    currentData = [];
+    earthData = [];
+    spaceData = [];
+    
+    // TODO: update the url per data type
+    $.getJSON( "/getdatagraphic", function( data ) {
+    	console.log(data);
+		var earth = 10;
+		var space = 0.5;
+    	if(type !== 'electrocardiogram' && type !== 'muscular_group'){
+    		var jsonObj = JSON.parse(data);
+    		console.log(jsonObj);
+    		for(var item in jsonObj){
+    			console.log(jsonObj[item]);	
+   		 		currentData.push({
+					date : jsonObj[item].created_at,
+					value : jsonObj[item].value
+				});
+				earthData.push({
+					date : jsonObj[item].created_at,
+					value : earth
+				});
+				spaceData.push({
+					date : jsonObj[item].created_at,
+					value : space
+				});
+    		}
+    	
+    	}
+    	makeChart();
+    });	
 }
-function generateChartData() {
-	var firstDate = new Date();
-	firstDate.setDate(firstDate.getDate() - 500);
-	firstDate.setHours(0, 0, 0, 0);
-
-	for (var i = 0; i < 500; i++) {
-		var newDate = new Date(firstDate);
-		newDate.setDate(newDate.getDate() + i);
-
-		var a1 = Math.round(Math.random() * (40 + i)) + 100 + i;
-		var b1 = Math.round(Math.random() * (1000 + i)) + 500 + i * 2;
-
-		var a2 = Math.round(Math.random() * (100 + i)) + 200 + i;
-		var b2 = Math.round(Math.random() * (1000 + i)) + 600 + i * 2;
-
-		var a3 = Math.round(Math.random() * (100 + i)) + 200;
-		var b3 = Math.round(Math.random() * (1000 + i)) + 600 + i * 2;
-
-		var a4 = Math.round(Math.random() * (100 + i)) + 200 + i;
-		var b4 = Math.round(Math.random() * (100 + i)) + 600 + i;
-
-		chartData1.push({
-			date : newDate,
-			value : a1,
-			volume : b1
-		});
-		chartData2.push({
-			date : newDate,
-			value : a2,
-			volume : b2
-		});
-		chartData3.push({
-			date : newDate,
-			value : a3,
-			volume : b3
-		});
-		chartData4.push({
-			date : newDate,
-			value : a4,
-			volume : b4
-		});
-	}
-}
-
 
 // Theme can only be applied when creating chart instance - this means
 // that if you need to change theme at run time, youhave to create whole
@@ -66,15 +59,9 @@ function makeChart() {
 		chart.clear();
 	}
 
-	// background
-	if (document.body) {
-	//	document.body.style.backgroundColor = "#282828";
-	}
-
-
 	AmCharts.makeChart("chartdiv", {
 		type : "stock",
-		theme : "dark",
+		theme : "light",
 		pathToImages : "../amstockchart/amcharts/images/",
 
 		dataSets : [{
@@ -82,45 +69,35 @@ function makeChart() {
 			fieldMappings : [{
 				fromField : "value",
 				toField : "value"
-			}, {
-				fromField : "volume",
-				toField : "volume"
 			}],
-			dataProvider : chartData1,
+			dataProvider : currentData,
 			categoryField : "date"
 		}, {
 			title : "Earth measure",
 			fieldMappings : [{
 				fromField : "value",
 				toField : "value"
-			}, {
-				fromField : "volume",
-				toField : "volume"
 			}],
-			dataProvider : chartData2,
+			dataProvider : earthData,
 			categoryField : "date"
 		}, {
 			title : "First Space measure",
 			fieldMappings : [{
 				fromField : "value",
 				toField : "value"
-			}, {
-				fromField : "volume",
-				toField : "volume"
 			}],
-			dataProvider : chartData3,
+			dataProvider : spaceData,
 			categoryField : "date"
 		}],
 
 		panels : [{
 
 			showCategoryAxis : false,
-			title : "Value",
+			title : "Measure",
 			percentHeight : 70,
 
 			stockGraphs : [{
 				id : "g1",
-
 				valueField : "value",
 				comparable : true,
 				compareField : "value",
@@ -131,20 +108,7 @@ function makeChart() {
 			}],
 
 			stockLegend : {
-				periodValueTextComparing : "[[percents.value.close]]%",
-				periodValueTextRegular : "[[value.close]]"
-			}
-		}, {
-			title : "Volume",
-			percentHeight : 30,
-			stockGraphs : [{
-				valueField : "volume",
-				type : "column",
-				showBalloon : false,
-				fillAlphas : 1
-			}],
-
-			stockLegend : {
+				periodValueTextComparing : "[[value.close]]",
 				periodValueTextRegular : "[[value.close]]"
 			}
 		}],
@@ -160,9 +124,13 @@ function makeChart() {
 		periodSelector : {
 			position : "left",
 			periods : [{
+				period : "hh",
+				count : 24,
+				label : "24 hours"
+			},{
 				period : "DD",
-				count : 10,
-				label : "10 days"
+				count : 7,
+				label : "7 days"
 			}, {
 				period : "MM",
 				selected : true,
@@ -172,9 +140,6 @@ function makeChart() {
 				period : "YYYY",
 				count : 1,
 				label : "1 year"
-			}, {
-				period : "YTD",
-				label : "YTD"
 			}, {
 				period : "MAX",
 				label : "MAX"
