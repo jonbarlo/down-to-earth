@@ -47,6 +47,27 @@ get '/bodyscan/create' do
 	erb :'bodyscan/create'
 end
 
+post '/bodyscan/create/raw' do
+	puts "creating raw object via web api call"
+	puts "---------------------------------"
+	puts "user_id: #{params[:user_id]} sensor: #{params[:sensor]} value: #{params[:value]} UOM: #{params[:UOM]} created_at: #{params[:created_at]}"
+	puts "---------------------------------"
+	@model = BodyScan.new
+	@model.user_id = params[:user_id]
+	@model.sensor = params[:sensor]
+	@model.value = params[:value]
+	@model.UOM = params[:UOM]
+	@model.created_at = params[:created_at]
+	puts "---------------------------------"
+	puts @model
+	puts "---------------------------------"
+	if @model.save
+		redirect '/bodyscan/all'
+	else
+		"Sorry, there was an error!"
+	end
+end
+
 post '/bodyscan/create' do
 	@model = BodyScan.new(params[:bodyscan])
 	puts "---------------------------------"

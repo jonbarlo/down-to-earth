@@ -10,16 +10,16 @@ Then just go to project folder and run the migration files to create localhost d
 
 	$ rake db:migrate
 
-##Add heroku remote
-###For production#1
-	git remote rm prod-backend
-	git remote add production-backend git@heroku.com:downtoearth-backend.git
+##Localhost test
+###POST new body-scan
+	curl --data "user_id=1&sensor=glucometer&value=66&UOM=mgdl&created_at=04/11/2015" http://127.0.0.1:9393/bodyscan/create/raw
 
 ##Heroku (connect to)
 
 ###Repo init
-	git init
-	heroku git:remote -a downtoearth-backend
+	git init #first time only
+	#.git folder rename (from copy to orignal)
+	git push heroku master
 
 ###Run db migrations
 	heroku run rake --trace db:migrate
