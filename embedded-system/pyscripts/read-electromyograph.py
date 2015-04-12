@@ -1,18 +1,20 @@
+import subprocess
+import os
 import time
-import RPi.GPIO as GPIO
-import sys, json
+import json
+from random import randint
+from subprocess import Popen, PIPE
 
 #GPIO22
 RCpin=22
 
 def ReadGPIOPin(pinNo):
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pinNo, GPIO.IN)
-    # This takes about 1 millisecond per loop cycle
-    if (GPIO.input(pinNo) == GPIO.LOW):
-        return 0
-    else:
-        return 1
+	filename = "pin-init.sh"
+	filepath = os.path.dirname(os.path.abspath(__file__))
+	subprocess.call(["bash" ,filepath + "/" + filename, pinNo])
+	filename = "pin-read.sh"
+	rc = subprocess.check_output(["bash" , filepath + "/" + filename, pinNo])
+	return rc
 
 #
 # RETURN/PRINT READ VALUES
