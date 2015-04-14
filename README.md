@@ -1,11 +1,20 @@
+#FIT AS A MOOSE: METABOLIC OBSERVATIONS OF SPACE EXPLORERS - 2015 Challenge
+https://2015.spaceappschallenge.org/challenge/fit-moose-metabolic-observations-space-explorers/
+
 # down-to-earth
 Human body monitor, muscle performance monitor, exersices recomendations, and preventive health.
 
-Collaboration with Global Nominee #1 Starc Industries from Auckland New Zealand,they will use our web api and data to show vital statistics right on Astronaut's helmet
+#Video
+http://youtu.be/VHu5dYAxwFM
 
+#Overview
+https://github.com/jonbarlo/down-to-earth/blob/master/DownToEarth.pdf
+
+#This project's collaborates with Global Nominee #1 and winner Starc Industries from Auckland New Zealand
 Special thanks to Start Industries for the interest shown and congrats for his awesome project Spaceglove: Spacecraft Gesture And Voice Commanding (https://2015.spaceappschallenge.org/project/starc-industries)
+They will use our web api and all recolected data to show vital statistics right on Astronaut's helmet (see simulation on pdf)
 
-##Modules:
+##Core Modules:
 1.Medical Analysis (raw data shown as line charts and data tables, as well as illness preventive and corrective actions that can be taken)
 
 2.Muscle Performance (giving advices, recomendations, exercises that can increase each different muscle region of the body)
@@ -21,16 +30,15 @@ Special thanks to Start Industries for the interest shown and congrats for his a
  	Environment Temperature
  	Glucometer
  	Saliva PH level
- 	ECG
- 	ECM
+ 	ECG (electrocardiograph)
+ 	ECM (electromyograph)
  	Oximeter
  	Blood Pressure
 
 ##View Results
 ###Medical Analysis
-####Show results on colors (green is fine, yellow is warning, red is problem)
-####Medical raw recomendations
-####Data comparassy charts (e.g.:earth performance against each different capture)
+Data tables with preventive and corrective alerts when abnormal levels are detected, show results on colors (green is fine, yellow is warning, red is problem), compare datasets (earth levels againts today's or first day in space), medical raw recomendations.
+
 ###Muscle Performance
-####Exercises Recomendations
+Body map showing different muscle groups and they performance, muscle intensity data so the explorer can identify which group in particular requires extra workout, data comparassy charts (e.g.:earth performance against each different capture at any date in particular), exercises recomendations.
 
