@@ -1,6 +1,6 @@
 #Linux OS embedded system
 
-- testing ruby-sinatra web app
+- system was done using a ruby-sinatra web app, running as a embedded system on RaspbianOS for Raspberry Pi B+ model
 
 ##Getting RVM
 
