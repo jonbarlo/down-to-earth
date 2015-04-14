@@ -6,29 +6,21 @@ Collaboration with from New Zealand, Starc Industries will use our web api and d
 Thanks! to Start Industries for the interest shown
 https://2015.spaceappschallenge.org/project/starc-industries/
 
-#TODO
-
 ##Body Scan
-	temperatura ambiente
-	temperatura cuerpo
-	nivel ph saliva
-	glucosa en sangre
-	electrocardiograma
-	medir grupo muscular
-	nivel de hidratación
-
-##Water bags scan? hydro % monitor
+ 	Body Temperature
+ 	Environment Temperature
+ 	Glucometer
+ 	Saliva PH level
+ 	ECG
+ 	ECM
+ 	Oximeter
+ 	Blood Pressure
 
 ##View Results
 	###Medical Analysis
+		####Show results on colors (green is fine, yellow is warning, red is problem)
+		####Medical raw recomendations
+		####Data comparassy charts (e.g.:earth performance against each different capture)
 	###Muscle Performance
 		####Exercises Recomendations
-
-#Pre-requisites for embedded-system
-	sudo gem install rdoc
-	sudo gem install bundle
-	
-#Run embedded-system
-	bundle install
-	shotgun app.rb
 
